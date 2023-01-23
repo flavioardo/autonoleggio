@@ -1,0 +1,51 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
+
+
+struct autod
+{
+    string categoria;
+    string marca;
+    string modello;
+    string colore;
+    int lun,mar,mer,gio,ven,sab,dom;
+};
+
+void lettura()
+{
+    cout<<" :"<<endl;
+    ifstream fin("auto.txt",ios::in);
+    string appoggio;
+    while(!fin.eof())
+    {
+        getline(fin,appoggio,',');
+        cout<<appoggio;
+    }
+    fin.close();
+}
+
+int main()
+{
+    int scelta;
+        do
+        {
+            cout<<"MENU'"<<endl;
+            cout<<"1) Visualizza auto (e disponibilita')"<<endl;
+            cout<<"2) Prenotare auto"<<endl;
+            cout<<"3)USCITA "<<endl;
+            cin>>scelta;
+            switch(scelta){
+                case 1:
+                    lettura();
+                    break;
+                case 2:
+                    //inserisci();
+                    break;
+            }
+
+        }while(scelta!=3);
+        
+
+    return 0;
+}
