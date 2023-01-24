@@ -9,26 +9,44 @@ struct autod
     string marca;
     string modello;
     string colore;
-    int lun,mar,mer,gio,ven,sab,dom;
+    string lu,ma,me,gi,ve,sa,dom;
 };
 
-void lettura()
+void lettura(autod auto_vet[])
 {
-    cout<<" :"<<endl;
+    cout<<"Le auto disponibili sono :"<<endl;
+    for(int v=0; v<7; v++)
+    {
+        cout<<endl<<auto_vet[v].categoria<<" "<<auto_vet[v].marca<<" "<<auto_vet[v].modello<<" "<<auto_vet[v].colore<<" ";
+        cout<<" "<<auto_vet[v].lu<<" "<<auto_vet[v].ma<<" "<<auto_vet[v].me<<" "<<auto_vet[v].gi<<" "<<auto_vet[v].ve<<" "<<auto_vet[v].sa<<" "<<auto_vet[v].dom;
+    }
+}
+
+void carica(autod auto_vet[])
+{
     ifstream fin("auto.txt",ios::in);
     string appoggio;
     while(!fin.eof())
     {
-        getline(fin,appoggio,',');
-        cout<<appoggio;
+        getline(fin,appoggio);
+        for(int i=0; i<7; i++)
+        {
+            fin>>auto_vet[i].categoria>>auto_vet[i].marca>>auto_vet[i].modello>>auto_vet[i].colore;
+            fin>>auto_vet[i].lu>>auto_vet[i].ma>>auto_vet[i].me>>auto_vet[i].gi>>auto_vet[i].ve>>auto_vet[i].sa>>auto_vet[i].dom;
+        }
     }
     fin.close();
 }
 
 int main()
 {
+    autod auto_vet[7];
+    carica(auto_vet);
+    lettura(auto_vet);
+    
+    
     int scelta;
-        do
+        /*do
         {
             cout<<"MENU'"<<endl;
             cout<<"1) Visualizza auto (e disponibilita')"<<endl;
@@ -37,14 +55,14 @@ int main()
             cin>>scelta;
             switch(scelta){
                 case 1:
-                    lettura();
+                    lettura(auto_vet);
                     break;
                 case 2:
                     //inserisci();
                     break;
             }
 
-        }while(scelta!=3);
+        }while(scelta!=3);*/
         
 
     return 0;
