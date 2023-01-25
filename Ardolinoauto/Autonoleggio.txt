@@ -9,18 +9,8 @@ struct autod
     string marca;
     string modello;
     string colore;
-    string lu,ma,me,gi,ve,sa,dom;
+    char lu,ma,me,gi,ve,sa,dom;
 };
-
-void lettura(autod auto_vet[])
-{
-    cout<<"Le auto disponibili sono :"<<endl;
-    for(int v=0; v<7; v++)
-    {
-        cout<<endl<<auto_vet[v].categoria<<" "<<auto_vet[v].marca<<" "<<auto_vet[v].modello<<" "<<auto_vet[v].colore<<" ";
-        cout<<" "<<auto_vet[v].lu<<" "<<auto_vet[v].ma<<" "<<auto_vet[v].me<<" "<<auto_vet[v].gi<<" "<<auto_vet[v].ve<<" "<<auto_vet[v].sa<<" "<<auto_vet[v].dom;
-    }
-}
 
 void carica(autod auto_vet[])
 {
@@ -38,31 +28,111 @@ void carica(autod auto_vet[])
     fin.close();
 }
 
+void lettura(autod auto_vet[])
+{
+    cout<<"Le auto disponibili sono :"<<endl;
+    for(int v=0; v<7; v++)
+    {
+        cout<<endl<<auto_vet[v].categoria<<" "<<auto_vet[v].marca<<" "<<auto_vet[v].modello<<" "<<auto_vet[v].colore<<" ";
+        cout<<" "<<auto_vet[v].lu<<" "<<auto_vet[v].ma<<" "<<auto_vet[v].me<<" "<<auto_vet[v].gi<<" "<<auto_vet[v].ve<<" "<<auto_vet[v].sa<<" "<<auto_vet[v].dom;
+    }
+}
+
+void file_agg(autod auto_vet[])
+{
+    ofstream fout("auto.txt");
+    
+    for(int v=0; v<7; v++)
+    {
+        fout<<endl<<auto_vet[v].categoria<<" "<<auto_vet[v].marca<<" "<<auto_vet[v].modello<<" "<<auto_vet[v].colore<<" ";
+        fout<<auto_vet[v].lu<<" "<<auto_vet[v].ma<<" "<<auto_vet[v].me<<" "<<auto_vet[v].gi<<" "<<auto_vet[v].ve<<" "<<auto_vet[v].sa<<" "<<auto_vet[v].dom;
+    }
+    
+    fout.close();
+}
+
+void inserisci(autod auto_vet[])
+{
+    string auto_cat;
+    int auto_gio;
+    
+    cout<<"Inserire categoria di auto da ricercare: (utilitaria,sportiva,lusso,furgone)"<<endl;
+    cin>>auto_cat;
+    cout<<"Inserire giorni da utilizzare: "<<endl;
+    cin>>auto_gio;
+    
+    for(int i=0; i<7; i++)
+    {
+        if(auto_vet[i].categoria==auto_cat)
+        {
+            switch(auto_gio)
+            {
+                case 1:
+                if(auto_vet[i].lu=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                
+                case 2:
+                if(auto_vet[i].ma=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                       
+                case 3:
+                if(auto_vet[i].me=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                       
+                case 4:
+                if(auto_vet[i].gi=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                       
+                case 5:
+                if(auto_vet[i].ve=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                
+                case 6:
+                if(auto_vet[i].sa=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+                       
+                case 7:
+                if(auto_vet[i].dom=='L')
+                       cout<<endl<<auto_vet[i].marca<<" "<<auto_vet[i].modello<<" "<<auto_vet[i].colore<<" ";
+                       break;
+            }
+            
+            cout<<endl;
+        }
+    }
+}
+
 int main()
 {
     autod auto_vet[7];
-    carica(auto_vet);
-    lettura(auto_vet);
-    
-    
+    //carica(auto_vet);
+    //lettura(auto_vet);
     int scelta;
-        /*do
+        do
         {
-            cout<<"MENU'"<<endl;
+            cout<<endl<<"MENU'"<<endl;
             cout<<"1) Visualizza auto (e disponibilita')"<<endl;
             cout<<"2) Prenotare auto"<<endl;
             cout<<"3)USCITA "<<endl;
+            cout<<"Inserire una scelta: "<<endl;
             cin>>scelta;
             switch(scelta){
                 case 1:
-                    lettura(auto_vet);
-                    break;
-                case 2:
-                    //inserisci();
-                    break;
+                    carica(auto_vet);
+                    lettura(auto_vet);;
+                        break;
+                    case 2:
+                        inserisci(auto_vet);
+                        break;
             }
 
-        }while(scelta!=3);*/
+        }while(scelta!=3);
         
 
     return 0;
